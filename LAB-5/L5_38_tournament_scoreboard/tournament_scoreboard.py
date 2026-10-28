@@ -10,7 +10,7 @@ import shutil
 import subprocess  # nosec B404 - only a fixed, non-shell command is run
 import tempfile
 
-POINTS = {"win" : 3, "draw": 1, "loss": 0}
+POINTS = {"win": 3, "draw": 1, "loss": 0}
 REFEREE_PASSWORD = os.environ.get("REFEREE_PASSWORD", "referee-demo")
 teams = {}
 matches = []
@@ -77,6 +77,7 @@ def is_top_two(team_name):
     table = league_table()
     return team_name in (table[0], table[1])
 
+
 def toss_coin():
     """Return the result of a fair coin toss."""
     return secrets.choice(["Heads", "Tails"])
@@ -104,7 +105,7 @@ def main():
         add_team(name)
     add_team("Hill Warriors")
     print("Toss:", toss_coin())
-    record_match("Royal Strikers", "City Rovers", 2,1)
+    record_match("Royal Strikers", "City Rovers", 2, 1)
     record_match("Lake United", "Hill Warriors", 0, 0)
     record_match("City Rovers", "Lake United", 3, 2)
     record_match("Hill Warriors", "Royal Strikers", 1, 1)
@@ -112,7 +113,7 @@ def main():
     for pos, name in enumerate(league_table(), 1):
         stats = teams[name]
         print(pos, name, stats["played"], stats["won"], stats["drawn"],
-              stats["lost"], points(name)) # one row per team
+              stats["lost"], points(name))  # one row per team
     print("Is City Rovers in the top two?", is_top_two("City Rovers"))
     print("Matches played:", len(matches))
 
